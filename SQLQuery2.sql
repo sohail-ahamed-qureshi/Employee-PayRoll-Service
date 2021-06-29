@@ -66,3 +66,7 @@ alter table EmployeePayroll
 add Net_Pay float not null default 0;
 
 
+insert into EmployeePayroll(EmployeeName, Basic_Pay, StartingDate, Gender, PhoneNumber, Address, Deductions, Taxable_Pay, Tax, Net_Pay)
+values('Terisa', 100000, convert (date,'2000-8-09'), 'female', 1234567890, 'India',2000, 5000, 2000, 80000);
+
+update EmployeePayroll set Department = 'Sales' where EmployeeId = 6;
