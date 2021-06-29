@@ -9,4 +9,7 @@ StartingDate Date not null
 );
 
 insert into EmployeePayroll(EmployeeName, Salary, StartingDate)
-values('John', 100000, convert (date,'1996-10-10'));
+values('Terisa', 250000, convert (date,'1999-12-25'));
+
+select * from EmployeePayroll;
+
