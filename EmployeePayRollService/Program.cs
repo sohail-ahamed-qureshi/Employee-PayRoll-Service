@@ -7,6 +7,8 @@ namespace EmployeePayRollService
         static void Main(string[] args)
         {
             Console.WriteLine("Section 3 - ADO.Net");
+            Employee employee = new Employee();
+            employee.GetData();
         }
     }
 }
