@@ -20,7 +20,7 @@ select * from EmployeePayroll where StartingDate between CAST('1990-01-01' as da
 alter table EmployeePayroll 
 add Gender varchar(6);
 
-update EmployeePayroll set Gender = 'male' where EmployeeName = 'John' or EmployeeName = 'jonny' or EmployeeName ='mahesh';
+update EmployeePayroll set Gender = 'male' where EmployeeName = 'Ram' or EmployeeName = 'jonny' or EmployeeName ='mahesh';
 
 update EmployeePayroll set Gender = 'female' where EmployeeName = 'terisa';
 
@@ -38,7 +38,7 @@ update EmployeePayroll set Department = 'Marketing' where EmployeeName = 'terisa
 alter table EmployeePayroll add PhoneNumber bigint;
 alter table EmployeePayroll add Address varchar(255) not null default 'India';
 
-update EmployeePayroll set PhoneNumber = 1234567890 where EmployeeName = 'terisa';
+update EmployeePayroll set PhoneNumber = 1234567890 where EmployeeId = 3 or EmployeeId =2 or EmployeeId=5;
 update EmployeePayroll set PhoneNumber = 0987654321 where EmployeeName = 'john';
 
 alter table EmployeePayroll
@@ -69,4 +69,5 @@ add Net_Pay float not null default 0;
 insert into EmployeePayroll(EmployeeName, Basic_Pay, StartingDate, Gender, PhoneNumber, Address, Deductions, Taxable_Pay, Tax, Net_Pay)
 values('Terisa', 100000, convert (date,'2000-8-09'), 'female', 1234567890, 'India',2000, 5000, 2000, 80000);
 
-update EmployeePayroll set Department = 'Sales' where EmployeeId = 6;
+update EmployeePayroll set Department = 'Developer' where EmployeeId = 1 or EmployeeId = 2 or EmployeeId = 3;
+SELECT EmployeeName, Gender, Department, PhoneNumber, Address, Basic_Pay, StartingDate FROM EmployeePayroll;

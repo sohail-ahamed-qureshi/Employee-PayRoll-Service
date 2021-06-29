@@ -6,7 +6,7 @@ namespace EmployeePayRollService
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Section 3 - ADO.Net");
         }
     }
 }
