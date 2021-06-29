@@ -23,3 +23,9 @@ add Gender varchar(6);
 update EmployeePayroll set Gender = 'male' where EmployeeName = 'John' or EmployeeName = 'jonny' or EmployeeName ='mahesh';
 
 update EmployeePayroll set Gender = 'female' where EmployeeName = 'terisa';
+
+select count(EmployeeId) from EmployeePayroll;
+select sum(salary) from EmployeePayroll where gender = 'male';
+select avg(salary) from EmployeePayroll;
+select min(salary) from EmployeePayroll;
+select max(salary) from EmployeePayroll;
