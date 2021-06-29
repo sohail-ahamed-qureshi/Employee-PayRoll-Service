@@ -16,3 +16,10 @@ select * from EmployeePayroll;
 select EmployeeName,Salary from EmployeePayroll Where EmployeeName = 'jonny';
 
 select * from EmployeePayroll where StartingDate between CAST('1990-01-01' as date) and CAST('1996-01-01' as date);
+
+alter table EmployeePayroll 
+add Gender varchar(6);
+
+update EmployeePayroll set Gender = 'male' where EmployeeName = 'John' or EmployeeName = 'jonny' or EmployeeName ='mahesh';
+
+update EmployeePayroll set Gender = 'female' where EmployeeName = 'terisa';
