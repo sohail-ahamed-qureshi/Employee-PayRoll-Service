@@ -40,3 +40,29 @@ alter table EmployeePayroll add Address varchar(255) not null default 'India';
 
 update EmployeePayroll set PhoneNumber = 1234567890 where EmployeeName = 'terisa';
 update EmployeePayroll set PhoneNumber = 0987654321 where EmployeeName = 'john';
+
+alter table EmployeePayroll
+drop column Salary;
+
+alter table EmployeePayroll 
+add Basic_Pay float not null default 00000;
+
+update EmployeePayroll set Basic_Pay = 100000 where EmployeeId =1;
+update EmployeePayroll set Basic_Pay = 150000 where EmployeeId =2;
+update EmployeePayroll set Basic_Pay = 200000 where EmployeeId =3;
+update EmployeePayroll set Basic_Pay = 250000 where EmployeeId =4;
+update EmployeePayroll set Basic_Pay = 100000 where EmployeeId =5;
+
+alter table EmployeePayroll 
+add Deductions float not null default 0;
+
+alter table EmployeePayroll 
+add Taxable_Pay float not null default 0;
+
+alter table EmployeePayroll 
+add Tax float not null default 0;
+
+alter table EmployeePayroll 
+add Net_Pay float not null default 0;
+
+
