@@ -9,7 +9,7 @@ StartingDate Date not null
 );
 
 insert into EmployeePayroll(EmployeeName, Salary, StartingDate)
-values('Terisa', 250000, convert (date,'1999-12-25'));
+values('Ram', 100000, convert (date,'2000-8-09'));
 
 select * from EmployeePayroll;
 
@@ -29,3 +29,14 @@ select sum(salary) from EmployeePayroll where gender = 'male';
 select avg(salary) from EmployeePayroll;
 select min(salary) from EmployeePayroll;
 select max(salary) from EmployeePayroll;
+
+alter table EmployeePayroll 
+add Department varchar(255) default 'TBD';
+
+update EmployeePayroll set Department = 'Marketing' where EmployeeName = 'terisa';
+
+alter table EmployeePayroll add PhoneNumber bigint;
+alter table EmployeePayroll add Address varchar(255) not null default 'India';
+
+update EmployeePayroll set PhoneNumber = 1234567890 where EmployeeName = 'terisa';
+update EmployeePayroll set PhoneNumber = 0987654321 where EmployeeName = 'john';
