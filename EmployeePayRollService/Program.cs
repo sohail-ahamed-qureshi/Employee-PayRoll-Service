@@ -26,6 +26,8 @@ namespace EmployeePayRollService
             employee.AddData(employee);
             //retrives the data from data base and displays it.
             employee.GetData();
+
+            employee.RetrieveSalary("terisa");
         }
     }
 }

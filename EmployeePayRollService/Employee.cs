@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace EmployeePayRollService
@@ -62,7 +63,11 @@ namespace EmployeePayRollService
                 connection.Close();
             }
         }
-
+        /// <summary>
+        /// performs data addition to database
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <returns></returns>
         public bool AddData(Employee employee)
         {
             SqlConnection connection = new SqlConnection(connectionString);
@@ -86,7 +91,7 @@ namespace EmployeePayRollService
                     command.Parameters.AddWithValue("@Tax", employee.Tax);
                     command.Parameters.AddWithValue("@Net_Pay", employee.NetPay);
                     int result = command.ExecuteNonQuery();
-                    if(result != 0)
+                    if (result != 0)
                         return true;
                     return false;
                 }
@@ -100,5 +105,41 @@ namespace EmployeePayRollService
                 connection.Close();
             }
         }
+
+        /// <summary>
+        /// retrieve salary of a employee from database.
+        /// </summary>
+        /// <param name="name">name of the employee</param>
+        public void RetrieveSalary(string name)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            try
+            {
+                using (connection)
+                {
+                    connection.Open();
+                    string spName = "dbo.SpRetrieveSalary";
+                    SqlCommand command = new SqlCommand(spName, connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@EmployeeName", name);
+                    SqlDataReader dr = command.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        BasicPay = dr.GetDouble(0);
+                        Console.WriteLine($"Salary of {name} is : "+BasicPay);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+
     }
 }
