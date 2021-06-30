@@ -21,12 +21,13 @@ namespace EmployeePayRollService
         public double Tax { get; set; }
         public double NetPay { get; set; }
 
+        readonly string connectionString = "Data Source=S;Initial Catalog=payroll-service;Integrated Security=True;Pooling=False";
         /// <summary>
         /// method to get data from database using SqlConnection and SqlCommand passing sql query.
         /// </summary>
         public void GetData()
         {
-            string connectionString = "Data Source=S;Initial Catalog=payroll-service;Integrated Security=True;Pooling=False";
+
             SqlConnection connection = new SqlConnection(connectionString);
             string query = @"SELECT EmployeeName, Gender, Department, PhoneNumber, Address, Basic_Pay, StartingDate FROM EmployeePayroll;";
             try
@@ -50,6 +51,44 @@ namespace EmployeePayRollService
                             Console.WriteLine($"{EmployeeName} {Gender} {Department} {PhoneNumber} {Address} {BasicPay} {StartingDate}");
                         }
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        public bool AddData(Employee employee)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            try
+            {
+                using (connection)
+                {
+                    string spName = "dbo.SpAddEmployeeData";
+                    SqlCommand command = new SqlCommand(spName, connection);
+                    connection.Open();
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@EmployeeName", employee.EmployeeName);
+                    command.Parameters.AddWithValue("@StartingDate", employee.StartingDate);
+                    command.Parameters.AddWithValue("@Gender", employee.Gender);
+                    command.Parameters.AddWithValue("@Department", employee.Department);
+                    command.Parameters.AddWithValue("@PhoneNumber", employee.PhoneNumber);
+                    command.Parameters.AddWithValue("@Basic_Pay", employee.BasicPay);
+                    command.Parameters.AddWithValue("@Address", employee.Address);
+                    command.Parameters.AddWithValue("@Deductions", employee.Deductions);
+                    command.Parameters.AddWithValue("@Taxable_Pay", employee.TaxablePay);
+                    command.Parameters.AddWithValue("@Tax", employee.Tax);
+                    command.Parameters.AddWithValue("@Net_Pay", employee.NetPay);
+                    int result = command.ExecuteNonQuery();
+                    if(result != 0)
+                        return true;
+                    return false;
                 }
             }
             catch (Exception ex)
