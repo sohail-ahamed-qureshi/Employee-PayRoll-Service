@@ -28,6 +28,9 @@ namespace EmployeePayRollService
             employee.GetData();
 
             employee.RetrieveSalary("terisa");
+
+            employee.UpdateSalary("John", 300000);
+           
         }
     }
 }

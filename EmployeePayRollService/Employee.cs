@@ -28,7 +28,6 @@ namespace EmployeePayRollService
         /// </summary>
         public void GetData()
         {
-
             SqlConnection connection = new SqlConnection(connectionString);
             string query = @"SELECT EmployeeName, Gender, Department, PhoneNumber, Address, Basic_Pay, StartingDate FROM EmployeePayroll;";
             try
@@ -126,7 +125,7 @@ namespace EmployeePayRollService
                     while (dr.Read())
                     {
                         BasicPay = dr.GetDouble(0);
-                        Console.WriteLine($"Salary of {name} is : "+BasicPay);
+                        Console.WriteLine($"Salary of {name} is : " + BasicPay);
                     }
                 }
             }
@@ -139,7 +138,40 @@ namespace EmployeePayRollService
                 connection.Close();
             }
         }
-
-
+        /// <summary>
+        /// ability to update the basic pay of employee present in the database
+        /// </summary>
+        /// <param name="name">name of the employee</param>
+        /// <param name="salary">salary to be updated</param>
+        public void UpdateSalary(string name, double salary)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            try
+            {
+                using (connection)
+                {
+                    connection.Open();
+                    string spName = "dbo.SpUpdateSalary";
+                    SqlCommand command = new SqlCommand(spName, connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@EmployeeName", name);
+                    command.Parameters.AddWithValue("@Salary", salary);
+                    SqlDataReader dr = command.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        BasicPay = dr.GetDouble(0);
+                        Console.WriteLine($"Updated Salary of {name} is : " + BasicPay);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
     }
 }
