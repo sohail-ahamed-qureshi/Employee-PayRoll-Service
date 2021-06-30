@@ -7,7 +7,7 @@ namespace EmployeePayRollService
     /// <summary>
     /// details of Employee data
     /// </summary>
-    class Employee
+    public class Employee
     {
         //properties of Model class
         public string EmployeeName { get; set; }
@@ -143,7 +143,7 @@ namespace EmployeePayRollService
         /// </summary>
         /// <param name="name">name of the employee</param>
         /// <param name="salary">salary to be updated</param>
-        public void UpdateSalary(string name, double salary)
+        public bool UpdateSalary(string name, double salary)
         {
             SqlConnection connection = new SqlConnection(connectionString);
             try
@@ -162,6 +162,9 @@ namespace EmployeePayRollService
                         BasicPay = dr.GetDouble(0);
                         Console.WriteLine($"Updated Salary of {name} is : " + BasicPay);
                     }
+                    if (dr != null)
+                        return true;
+                    return false;
                 }
             }
             catch (Exception ex)
@@ -172,6 +175,7 @@ namespace EmployeePayRollService
             {
                 connection.Close();
             }
+            return false;
         }
     }
 }

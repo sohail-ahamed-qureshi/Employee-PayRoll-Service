@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeePayRollService", "E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoDataBaseProject", "..\..\DemoDataBaseProject\DemoDataBaseProject.csproj", "{4909D212-5A31-42FC-9E56-FA51439CC684}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnitDatabase.Test", "..\NUnitDatabase.Test\NUnitDatabase.Test.csproj", "{4C9BFFCF-1216-415F-A00D-F137F24CD434}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{4909D212-5A31-42FC-9E56-FA51439CC684}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4909D212-5A31-42FC-9E56-FA51439CC684}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4909D212-5A31-42FC-9E56-FA51439CC684}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C9BFFCF-1216-415F-A00D-F137F24CD434}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C9BFFCF-1216-415F-A00D-F137F24CD434}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C9BFFCF-1216-415F-A00D-F137F24CD434}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C9BFFCF-1216-415F-A00D-F137F24CD434}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
