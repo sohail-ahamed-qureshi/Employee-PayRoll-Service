@@ -15,5 +15,15 @@ namespace NUnitDatabase.Test
             bool expected = true;
             Assert.AreEqual(result,expected);
         }
+
+        [Test]
+        public void GivenName_ReturnsEmployeeDetails()
+        {
+            //Arrange
+            Employee employee = new Employee();
+            bool result = employee.GetDataByName("sohail");
+            bool expected = true;
+            Assert.AreEqual(result, expected);
+        }
     }
 }

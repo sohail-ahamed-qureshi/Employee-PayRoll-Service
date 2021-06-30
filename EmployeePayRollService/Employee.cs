@@ -62,6 +62,47 @@ namespace EmployeePayRollService
                 connection.Close();
             }
         }
+
+        public bool GetDataByName(string name)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            try
+            {
+                using (connection)
+                {
+                    connection.Open();
+                    string spName = "dbo.SpRetrieveDataByName";
+                    SqlCommand command = new SqlCommand(spName, connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@EmployeeName", name);
+                    SqlDataReader dr = command.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        EmployeeName = dr.GetString(0);
+                        Gender = dr.GetString(1);
+                        Department = dr.GetString(2);
+                        PhoneNumber = dr.GetInt64(3);
+                        Address = dr.GetString(4);
+                        BasicPay = dr.GetDouble(5);
+                        StartingDate = dr.GetDateTime(6);
+                        Console.WriteLine($"{EmployeeName} {Gender} {Department} {PhoneNumber} {Address} {BasicPay} {StartingDate}");
+                    }
+                    if (dr != null)
+                        return true;
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+        }
+
         /// <summary>
         /// performs data addition to database
         /// </summary>
