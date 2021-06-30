@@ -139,7 +139,7 @@ namespace EmployeePayRollService
             }
         }
         /// <summary>
-        /// ability to update the basic pay of employee present in the database
+        /// ability to update the basic pay of employee present in the database.
         /// </summary>
         /// <param name="name">name of the employee</param>
         /// <param name="salary">salary to be updated</param>
