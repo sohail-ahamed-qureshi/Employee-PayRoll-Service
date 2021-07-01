@@ -26,10 +26,12 @@ namespace EmployeePayRollService
             employee.AddData(employee);
             //retrives the data from data base and displays it.
             employee.GetData();
-
+            //Retrieve salary of Employee
             employee.RetrieveSalary("terisa");
-
+            //Update salary of Employee
             employee.UpdateSalary("John", 300000);
+            //Perform operations like SUM, MAX, MIN, COUNT and AVG
+            employee.Operations();
            
         }
     }

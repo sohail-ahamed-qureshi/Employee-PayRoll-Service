@@ -100,7 +100,94 @@ namespace EmployeePayRollService
             {
                 connection.Close();
             }
-
+        }
+        /// <summary>
+        /// Performs Sum, Average, Minimum, Maximum, Count operations.
+        /// </summary>
+        public void Operations()
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            try
+            {
+                using (connection)
+                {
+                    connection.Open();
+                    //Total Sum of male employess
+                    string spSum = "dbo.SpSumOperation";
+                    SqlCommand command = new SqlCommand(spSum, connection);
+                    command.CommandType =CommandType.StoredProcedure;
+                    SqlDataReader dr = command.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        BasicPay = dr.GetDouble(0);
+                        Console.WriteLine($"Total Salary of Male Employees is : " + BasicPay);
+                    }
+                    dr.Close();
+                    //Average salary of employees
+                    string spAverage = "dbo.SpAverageOperation";
+                    command = new SqlCommand(spAverage, connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    dr = command.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        BasicPay = dr.GetDouble(0);
+                        Console.WriteLine($"Average Salary of Employees is : " + BasicPay);
+                    }
+                    dr.Close();
+                    //Minimum salary of employees
+                    string spMinimum = "dbo.SpMinOperation";
+                    command = new SqlCommand(spMinimum, connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    dr = command.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        BasicPay = dr.GetDouble(0);
+                        Console.WriteLine($"Minimum Salary of Employees is : " + BasicPay);
+                    }
+                    dr.Close();
+                    //Maximum salary of employees
+                    string spMaximum = "dbo.SpMaxOperation";
+                    command = new SqlCommand(spMaximum, connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    dr = command.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        BasicPay = dr.GetDouble(0);
+                        Console.WriteLine($"Maximum Salary of Employees is : " + BasicPay);
+                    }
+                    dr.Close();
+                    //Count Number of male employees
+                    string spCount = "dbo.SpCountOperation";
+                    command = new SqlCommand(spCount, connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    dr = command.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        int countMale = dr.GetInt32(0);
+                        Console.WriteLine($"Number of Male Employees : " + countMale);
+                    }
+                    dr.Close();
+                    //Count Number of Female employees
+                    string spCountFemale = "dbo.SpCountFemaleOperation";
+                    command = new SqlCommand(spCountFemale, connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    dr = command.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        int countFemale = dr.GetInt32(0);
+                        Console.WriteLine($"Number of Female Employees : " + countFemale);
+                    }
+                    dr.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
 
         /// <summary>

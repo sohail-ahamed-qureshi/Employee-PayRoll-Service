@@ -21,7 +21,7 @@ namespace NUnitDatabase.Test
         {
             //Arrange
             Employee employee = new Employee();
-            bool result = employee.GetDataByName("sohail");
+            bool result = employee.GetDataByName("john");
             bool expected = true;
             Assert.AreEqual(result, expected);
         }
